@@ -53,21 +53,9 @@ public class TaskResource {
         return ResponseEntity.ok().body(task);
     }
 
-    @GetMapping(value = "/findByName/{name}")
-    public ResponseEntity<List<TaskEntity>> findByName(@PathVariable String name) {
-        List<TaskEntity> task = taskService.findByNameContainingIgnoreCase(name);
-        return ResponseEntity.ok().body(task);
-    }
-
-    @GetMapping(value = "/findByDescription/{description}")
-    public ResponseEntity<List<TaskEntity>> findByDescription(@PathVariable String description) {
-        List<TaskEntity> task = taskService.findByDescriptionContainingIgnoreCase(description);
-        return ResponseEntity.ok().body(task);
-    }
-
-    @GetMapping(value = "/findByClientId/{id}")
-    public ResponseEntity<List<TaskEntity>> findByClientId(@PathVariable Long id) {
-        List<TaskEntity> task = taskService.findByClientId(id);
+    @GetMapping(value = "/searchTasks/{text}")
+    public ResponseEntity<List<TaskEntity>> searchTasks(@PathVariable String text) {
+        List<TaskEntity> task = taskService.searchTasks(text);
         return ResponseEntity.ok().body(task);
     }
 }

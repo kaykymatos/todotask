@@ -9,18 +9,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.time.Instant;
 import java.util.Arrays;
 
 @Configuration
 @Profile("test")
-public class TestConfig implements CommandLineRunner {
+public class TestConfig implements CommandLineRunner, WebMvcConfigurer {
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private TodoTasksRepository todoTasksRepository;
 
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("Authorization", "Content-Type", "Accept")
+                .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Headers")
+                .maxAge(3600);
+    }
     @Override
     public void run(String... args) throws Exception {
         UserEntity u1 = new UserEntity(null, "Maria Brown", "maria@gmail.com");

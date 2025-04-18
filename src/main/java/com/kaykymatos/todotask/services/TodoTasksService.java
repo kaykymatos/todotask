@@ -36,16 +36,8 @@ public class TodoTasksService {
         return task.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    public List<TaskEntity> findByNameContainingIgnoreCase(String name) {
-        return repository.findByNameContainingIgnoreCase(name);
-    }
-
-    public List<TaskEntity> findByDescriptionContainingIgnoreCase(String description) {
-        return repository.findByDescriptionContainingIgnoreCase(description);
-    }
-
-    public List<TaskEntity> findByClientId(Long clientId) {
-        return repository.findByClientId(clientId);
+    public List<TaskEntity> searchTasks(String search) {
+        return repository.searchTasks(search);
     }
 
     public TaskEntity insert(TaskDTO dto) {
