@@ -71,6 +71,11 @@ public class UserService {
         }
 
     }
+
+    public List<UserEntity> searchClients(String search) {
+        return repository.searchClients(search);
+    }
+
     private void updateData(UserEntity entity, UserEntity user) {
         entity.setEmail(user.getEmail());
         entity.setName(user.getName());

@@ -98,6 +98,10 @@ public class TaskEntity implements Serializable {
         return TaskStatus.valueOf(taskStatus);
     }
 
+    public Integer getTaskStatusCode() {
+        return taskStatus;
+    }
+
     public void setTaskStatus(TaskStatus taskStatus) {
         if (taskStatus != null) this.taskStatus = taskStatus.getCode();
     }

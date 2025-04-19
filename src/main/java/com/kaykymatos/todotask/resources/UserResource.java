@@ -61,4 +61,10 @@ public class UserResource {
         var task = userService.findByEmail(email);
         return ResponseEntity.ok().body(task);
     }
+
+    @GetMapping(value = "/searchClients/{text}")
+    public ResponseEntity<List<UserEntity>> searchClients(@PathVariable String text) {
+        List<UserEntity> task = userService.searchClients(text);
+        return ResponseEntity.ok().body(task);
+    }
 }
